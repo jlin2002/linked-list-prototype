@@ -13,7 +13,18 @@ const Nodes = ({ nodes }) => {
     });
     return (
         <g stroke='black'>
-            {nodesProps.map((nodeProps, i) => <Node key={i} {...nodeProps} /> )};
+            {nodesProps.map((nodeProps, i) => {
+                const shouldAnimate = i === nodes.length - 1;
+                return (
+                    <Node 
+                        key={i} 
+                        {...nodeProps} 
+                        shouldAnimate={shouldAnimate}
+                        delay={shouldAnimate? nodes.length - 1: -1}
+                    /> 
+                );
+            }
+            )}
         </g>
     )
 }
